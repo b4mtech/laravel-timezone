@@ -11,7 +11,7 @@ This is a reimplementation of [jamesmills/laravel-timezone](https://github.dev/j
 
 ## Requirements
 
-Supported Laravel versions 9, 10 and 11
+Supported Laravel versions 9.x and 10.x
 
 ## How does it work
 
