@@ -48,11 +48,11 @@ class UpdateUsersTimezone
 
         $ip = $this->getFromLookup();
         $geoip_info = geoip()->getLocation($ip);
-        $column = config('timezone.column_name', 'timezone');
+        $columnName = config('timezone.column_name', 'timezone');
 
         if ($user->timezone != $geoip_info['timezone']) {
-            if (config('timezone.overwrite') == true || $user->timezone == null) {
-                $user->setAttribute($column, $geoip_info['timezone'] ?? $geoip_info->time_zone['name']);
+            if (config('timezone.overwrite') == true || $user->getAttribute($columnName) == null) {
+                $user->setAttribute($columnName, $geoip_info['timezone'] ?? $geoip_info->time_zone['name']);
                 $user->save();
 
                 $this->notify($geoip_info);
