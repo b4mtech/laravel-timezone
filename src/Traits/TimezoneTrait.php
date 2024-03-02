@@ -9,7 +9,11 @@ trait TimezoneTrait
     */
     protected function getUserTimezone(): string
     {
-        $column = config('timezone.column_name', 'timezone');
-        return (auth()->user()->getAttribute($column)) ?? config('app.timezone');
+        $defaultTimezone = config('app.timezone');
+        $columnName = config('timezone.column_name', 'timezone');
+        if(auth()->user()) {
+            return (auth()->user()->getAttribute($columnName)) ?? $defaultTimezone;
+        }
+        return $defaultTimezone;
     }
 }
